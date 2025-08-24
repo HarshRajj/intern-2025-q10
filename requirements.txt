@@ -5,7 +5,7 @@ python-dotenv
 langchain
 langchain-google-genai
 cachetools
-sqlite3
+pysqlite3
 python-multipart
 httpx
 requests
