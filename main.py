@@ -1,4 +1,11 @@
 
+#!/usr/bin/env python3
+"""
+Q10 FastAPI Microservice with Database Logging
+Copyright (c) 2025 HarshRajj
+Licensed under the MIT License
+"""
+
 import os
 import shutil
 from datetime import datetime
