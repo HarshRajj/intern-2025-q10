@@ -15,6 +15,12 @@ cache_stats = {
 def get_cached_response(prompt, chain):
     import time
     start = time.perf_counter()
+    
+    # Handle case where chain is None (API key not available)
+    if chain is None:
+        elapsed = (time.perf_counter() - start) * 1000
+        return "API key not configured. This is a test response for development/testing purposes.", False, elapsed
+    
     with cache_lock:
         if prompt in cache:
             cache_stats['hits'] += 1

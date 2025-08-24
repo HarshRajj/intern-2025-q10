@@ -1,0 +1,59 @@
+Chat History Export
+==================
+
+ID: 1
+Timestamp: 2025-08-24T16:44:35.250700
+Prompt: why do we use python in AI?
+Response: Python's clear syntax and extensive libraries like TensorFlow and PyTorch make it ideal for AI development.
+Tokens Used: 23
+--------------------------------------------------
+
+ID: 2
+Timestamp: 2025-08-24T16:53:21.217052
+Prompt: Hello
+Response: Error: LLM service unavailable (429 You exceeded your current quota, please check your plan and billing details. For more informatio)
+Tokens Used: 21
+--------------------------------------------------
+
+ID: 3
+Timestamp: 2025-08-24T16:54:49.845879
+Prompt: Hello
+Response: Error: LLM service unavailable (429 You exceeded your current quota, please check your plan and billing details. For more informatio)
+Tokens Used: 21
+--------------------------------------------------
+
+ID: 4
+Timestamp: 2025-08-24T16:56:23.212724
+Prompt: who is the president of russia?
+Response: Vladimir Putin is the president of Russia.
+Tokens Used: 13
+--------------------------------------------------
+
+ID: 5
+Timestamp: 2025-08-24T17:30:35.127944
+Prompt: Test message
+Response: Error: LLM service unavailable (429 You exceeded your current quota, please check your plan and billing details. For more informatio)
+Tokens Used: 22
+--------------------------------------------------
+
+ID: 6
+Timestamp: 2025-08-24T17:32:33.897675
+Prompt: Test message
+Response: Error: LLM service unavailable (429 You exceeded your current quota, please check your plan and billing details. For more informatio)
+Tokens Used: 22
+--------------------------------------------------
+
+ID: 7
+Timestamp: 2025-08-24T17:34:32.105155
+Prompt: Hello
+Response: Error: LLM service unavailable (429 You exceeded your current quota, please check your plan and billing details. For more informatio)
+Tokens Used: 21
+--------------------------------------------------
+
+ID: 8
+Timestamp: 2025-08-24T17:34:35.747335
+Prompt: Test message
+Response: Error: LLM service unavailable (429 You exceeded your current quota, please check your plan and billing details. For more informatio)
+Tokens Used: 22
+--------------------------------------------------
+

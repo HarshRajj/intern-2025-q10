@@ -1,5 +1,7 @@
 
 import os
+import shutil
+from datetime import datetime
 from fastapi import FastAPI, HTTPException, Response
 from db import init_db, insert_chat_turn, get_last_20_turns
 from models import ChatTurn, ChatTurnResponse
@@ -23,19 +25,35 @@ prompt = None
 chain = None
 bucket = None
 
-@app.on_event("startup")
-def startup():
+def initialize_chatbot():
+    """Initialize chatbot components"""
     global llm, memory, prompt, chain, bucket
     init_db()
     load_dotenv()
     api_key = os.getenv("GOOGLE_API_KEY")
     if not api_key:
-        raise RuntimeError("GOOGLE_API_KEY not found in .env file.")
-    llm = ChatGoogleGenerativeAI(model="gemini-2.0-flash", google_api_key=api_key)
-    memory = ConversationBufferMemory(k=4, return_messages=True)
-    prompt = get_prompt_template()
-    chain = ConversationChain(llm=llm, memory=memory, prompt=prompt)
-    bucket = TokenBucket(rate=10, per=60)
+        # In testing mode, we can initialize without the API key
+        # The /chat endpoint will handle the missing key gracefully
+        llm = None
+        memory = ConversationBufferMemory(k=4, return_messages=True)
+        prompt = get_prompt_template()
+        chain = None
+        bucket = TokenBucket(rate=10, per=60)
+        print("Warning: GOOGLE_API_KEY not found. Chat functionality will be limited.")
+    else:
+        llm = ChatGoogleGenerativeAI(model="gemini-2.0-flash", google_api_key=api_key)
+        memory = ConversationBufferMemory(k=4, return_messages=True)
+        prompt = get_prompt_template()
+        chain = ConversationChain(llm=llm, memory=memory, prompt=prompt)
+        bucket = TokenBucket(rate=10, per=60)
+
+@app.on_event("startup")
+def startup():
+    initialize_chatbot()
+
+# Initialize immediately for testing environments
+if bucket is None:
+    initialize_chatbot()
 
 
 # Accepts: {"prompt": "..."}
@@ -70,6 +88,15 @@ def log_chat_turn(turn: ChatTurn):
 @app.get("/history", response_model=List[ChatTurnResponse])
 def get_history():
     return get_last_20_turns()
+
+@app.get("/health")
+def health_check():
+    return {
+        "status": "healthy",
+        "service": "Q10 FastAPI Microservice",
+        "version": "1.0.0",
+        "timestamp": datetime.utcnow().isoformat()
+    }
 
 
     from models import ChatTurn, ChatTurnResponse
