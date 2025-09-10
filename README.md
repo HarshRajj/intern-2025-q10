@@ -26,8 +26,8 @@ Production-ready FastAPI microservice with CI/CD pipeline for chat turn logging 
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/yourusername/intern-2025-q10.git
-   cd intern-2025-q10
+   git clone https://github.com/yourusername/10-chat-microservice-fastapi-prod.git
+   cd 10-chat-microservice-fastapi-prod
    ```
 
 2. **Set up environment:**
